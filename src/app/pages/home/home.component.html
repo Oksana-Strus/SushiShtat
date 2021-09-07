@@ -1,0 +1,42 @@
+<div class="container-fluid px-lg-5 px-2 py-lg-5 py-2">
+  <div class="px-lg-5 px-2">
+    <div class="col" *ngFor="let discount of userDiscounts">
+      <img class="discount-img" [src]="discount.image" alt="">
+    </div>
+    <div class="section-category-container">
+      <h4 class="header">
+        ДОДАВАЙ СТРАВИ В КОРЗИНУ ТА ОФОРМЛЮЙ ЗАМОВЛЕННЯ - У НАС Є З ЧОГО ОБРАТИ!
+      </h4>
+      <div class="categories">
+        <a class="category" *ngFor="let category of  userCategories">
+          <h5>{{category.title| uppercase}}</h5>
+          <img class="icon-style" [routerLink]="['/products', category.id]"
+            [src]="sanitizer.bypassSecurityTrustResourceUrl(category.image)" alt="">
+        </a>
+      </div>
+    </div>
+    <h1 class="header-top-positions">ТОП-ПОЗИЦІЇ НАШОГО МЕНЮ:</h1>
+    <div class="section-category-container d-flex flex-wrap" *ngFor="let category of userCategories">
+      <h2 class="d-block category-name col w-25 order-0">{{category.title |uppercase}}</h2>
+      <button class="btn btn-see-all-products col-4 order-xl-1 order-3 flex-grow-1 flex-xl-grow-0"> <a href=""
+          [routerLink]="['/products', category.id]">ДИВИТИСЬ ВСІ {{category.title |uppercase}}</a></button>
+      <div class="row category-row w-100 order-xl-2 order-2 justify-content-evenly"
+        *ngFor="let product of getProductsForCategory(category.id)">
+        <div class="card col-3">
+          <div class="sushi-square-icon">
+            <img src="../../../assets/images/sushi-mini-icon.svg" alt="" class="sort-icon"></div>
+          <img [src]="product.image" class="card-img-top">
+          <div class="card-body">
+            <h3 class="card-title">{{product.title}}</h3>
+            <p class="card-text"><span>{{product.weight}}:</span> {{product.description}}</p>
+            <div class="row align-items-center justify-content-between">
+              <button class="btn btn-add-to-cart" (click)="addToBasket(product)">В
+                КОРЗИНУ</button>
+              <span class="price d-block">{{product.price}} грн</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

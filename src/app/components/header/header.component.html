@@ -1,0 +1,73 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark">
+    <div class="container-fluid mx-5 d-flex justify-content-between">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" [routerLink]="[ '' ]"> <img class="sushi-icon" src="../../../assets/images/sushishtat.svg"
+          alt=""></a>
+      <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a [routerLink]="['']" routerLinkActive="active" class="nav-link">ГОЛОВНА
+              <div class="red-circle"></div>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="[ '/about']" routerLinkActive="active" class="nav-link text-nowrap">ПРО НАС
+              <div class="red-circle"></div>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="[ '/delivery' ]" routerLinkActive="active" class="nav-link">ДОСТАВКА
+              <div class="red-circle"></div>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="[ '/discounts' ]" routerLinkActive="active" class="nav-link">АКЦІЇ
+              <div class="red-circle"></div>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="[ '/admin' ]" routerLinkActive="active" class="nav-link">АДМІН <div class="red-circle">
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-center text-nowrap d-xl-block d-none">
+          <span class="for-tel">(068) 608 00 08</span>
+          <img class="tel-icon d-xl-inline" alt="" src="../../../assets/images/phoneIcon.svg">
+          <span class="for-tel d-xl-inline">(093) 608 00 08</span>
+        </div>
+        <div class="d-flex justify-content-center flex-column align-items-center white-mobile-icon">
+          <img class="tel-icon d-xl-none" alt="" src="../../../assets/images/whitemobilePhone.svg">
+        </div>
+
+        <div class="text-center">
+          <span class="tel-description text-center d-xl-block d-none text-nowrap">щодня без вихідних з 11:00 до
+            00:00</span>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end">
+        <div class="row">
+          <div class="col text-center">
+            <span class="d-block text-for-counter">{{basket.totalPrice}}</span>
+            <span class="d-block text-for-counter">грн</span>
+          </div>
+          <div class="col text-center px-0" (click)="openBasket()">
+            <a>
+              <div style="position: relative;">
+                <img class="cart-icon" src="../../../assets/images/cartIcon.svg" alt="">
+                <small
+                  style="color: red; position: absolute; top:23%; right:40%; font-weight: bold; color: #e31031;">{{basket.totalItems}}</small>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

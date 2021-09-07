@@ -1,0 +1,26 @@
+html {
+  color: white;
+  background-color: black;
+  min-height: calc(100vh - 447px);
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  padding: 30px 100px 0px 80px;
+  margin: 0;
+  min-width: 100%;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+.text-style{
+  margin: 3px;
+}
+
+.schedule{
+  font-size: 13px;
+}

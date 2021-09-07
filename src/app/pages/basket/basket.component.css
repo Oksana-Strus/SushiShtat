@@ -1,0 +1,93 @@
+.btn-back-to-menu {
+  border: 2px solid #e31031;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  -webkit-transition: all .25s;
+  transition: all .25s;
+  cursor: pointer;
+  color: #fbfbfb;
+}
+
+.btn-back-to-menu:hover {
+  background-color: #e31031;
+}
+
+.btn-arrangment-order {
+  border-radius: 12px;
+}
+
+.column-container {
+  background-color: #1f1f1f;
+  border-radius: 24px;
+}
+
+.check {
+  background-color: transparent;
+  width: 50px;
+  color: white;
+  padding: 8px;
+  border: none;
+}
+
+.check::-webkit-input-placeholder {
+  color: white;
+}
+
+.check:-ms-input-placeholder {
+  color: white;
+}
+
+.check::-ms-input-placeholder {
+  color: white;
+}
+
+.check::placeholder {
+  color: white;
+}
+
+.number-input {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.number-input,
+.number-input * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.number-input button:after {
+  display: inline-block;
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: '\f068';
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.number-input button.plus:after {
+  content: '\f067';
+}
+
+input.quantity {
+  width: 50px;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  color: white;
+  font-weight: 700;
+}
+
+.button-action {
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+  color: white;
+  border: none;
+}
+/*# sourceMappingURL=basket.component.css.map */

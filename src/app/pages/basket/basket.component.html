@@ -1,0 +1,138 @@
+<div class="container-fluid px-lg-5 px-2 py-lg-5 py-2">
+  <div class="px-lg-5 px-2">
+    <h1 class="py-lg-2 ">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h1>
+
+    <form [formGroup]="orderForm" (ngSubmit)="hello()">
+      <div class="row gx-5">
+        <div class="col-4">
+          <div class="column-container py-lg-4 py-2 px-lg-4 px-2">
+            <div class="row d-flex justify-content-between">
+              <h5 class="col-9">ВАШЕ ЗАМОВЛЕННЯ</h5>
+              <h6 class="col-3 d-flex justify-content-end">{{order.totalPrice}} грн</h6>
+            </div>
+            <div class="row">
+              <!-- <h6 *ngFor="let item of order.items">{{item.title}}</h6> -->
+              <div class="mini-order-card px-4 py-2 my-2" *ngFor="let item of order.items">
+                <div class="header-mini-card d-flex justify-content-between align-items-center py-2">
+                  <div class="title">{{item.title}}</div>
+                  <div class="d-flex justify-content-end">
+                    <div class="d-flex wrapper-close-btn size-circle">
+                      <button type="button" class="btn-close btn-close-white" (click)="removeAllItems(item.productId)"
+                        aria-label="Close"></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row body-mini-card">
+                  <div class="col-1">
+                    <div class="col action-btn my-2 size-circle" (click)="addItem(item.productId)"><i
+                        class="fas fa-plus"></i>
+                    </div>
+                    <div class="col action-btn my-2 size-circle" (click)="removeItem(item.productId)"><i
+                        class="fas fa-minus"></i>
+                    </div>
+                  </div>
+                  <div class="col-3 counter">{{item.quantity}}<span class="color-light-grey">x</span></div>
+                  <div class="col"><img style=" height: 40px;" [src]="item.image" alt=""></div>
+                  <div class="col-2">
+                    <div class="row d-flex justify-content-end">{{item.weight}}</div>
+                    <div class="row d-flex justify-content-end">{{item.price}} грн</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button class="btn border-danger w-100 mt-lg-4 mt-2 btn-back-to-menu" [routerLink]="[ '' ]">
+                НАЗАД ДО МЕНЮ</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="column-container py-lg-4 py-2 px-lg-4 px-2">
+            <div class="d-flex justify-content-between mb-3">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <input type="text" class="form-control" formControlName="name" placeholder="Ваше ім'я*">
+                </div>
+                <div class="col-md-6">
+                  <input type="tel" class="form-control" formControlName="tel" placeholder="Телефон*">
+                </div>
+                <div class="col-12">
+                  <input type="text" class="form-control" formControlName="address" placeholder="Вулиця*">
+                </div>
+                <div class="col-md-4">
+                  <input type="number" class="form-control" formControlName="house" placeholder="Будинок*">
+                </div>
+                <div class="col-md-4">
+                  <input type="text" class="form-control" formControlName="appartaments" placeholder="Квартира*">
+                </div>
+                <div class="col-md-4">
+                  <input type="text" class="form-control" formControlName="entrance" placeholder="Під'їзд*">
+                </div>
+                <div class="col-12">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">Не телефонувати для підтвердження</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">Не дзвонити у двері</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <input type="text" class="form-control" id="comment" placeholder="Коментар">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 d-grid gap-3">
+          <div class="col column-container py-lg-4 py-2 px-lg-4 px-2">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+                checked>
+              <label class="form-check-label" for="exampleRadios1">
+                Оплата готівкою кур'єру
+              </label>
+            </div>
+            <div>Підготувати решту з <input type="number" class="check" placeholder="____"> грн</div>
+          </div>
+          <div class="col column-container py-lg-4 py-2 px-lg-4 px-2">
+            <div class="d-flex justify-content-between" *ngFor="let orderOption of order.options">
+              <div class="text-question">{{orderOption.title}}</div>
+              <div class="number-input">
+                <button class="minus button-action" (click)="remove(orderOption.option)"></button>
+                <input class="quantity" min="0" value="{{orderOption.quantity}}">
+                <button class="plus  button-action" (click)="add(orderOption.option)"></button>
+              </div>
+            </div>
+          </div>
+          <div class="col column-container py-lg-4 py-2 px-lg-4 px-2">
+            <div class="d-flex justify-content-between">
+              <div class="text-question">Замовлення</div>
+              <div class="price">{{order.totalPrice}} грн
+              </div>
+            </div>
+            <div class="d-flex justify-content-between">
+              <div class="text-question">Доставка</div>
+              <div class="number-input">
+                <div class="price">0 грн
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between">
+              <div class="text-question">Усього</div>
+              <div class="price">{{order.totalPrice}} грн
+              </div>
+            </div>
+            <div class="text-center py-lg-4 py-1">Введіть свою адресу щоб дізнатися час доставки</div>
+            <button [disabled]="orderForm.invalid" type="submit"
+              class="btn btn-secondary w-100 btn-arrangment-order">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

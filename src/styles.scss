@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+$grid-breakpoints: (xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 1000px,
+  xl: 1300px,
+  xxl: 1400px);
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+html {
+  background-color: black;
+  color: white;
+}
+
+body {
+  background-color: black;
+}
+

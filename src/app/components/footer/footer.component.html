@@ -1,0 +1,68 @@
+<div class="container footer">
+  <div class="row flex-wrap">
+    <div class="col-lg-4 col-6 footer-col order-first col-xs-12">
+      <div class="row flex-nowrap">
+        <div class="col">
+          <a class="footer-navigation nav-link" [routerLink]="[ '' ]" routerLinkActive="active">ГОЛОВНА</a>
+          <a class="footer-navigation nav-link" [routerLink]="[ '/discounts' ]" routerLinkActive="active">АКЦІЇ</a>
+          <a class="footer-navigation nav-link" href="" [routerLink]="[ '/oferta' ]"
+            routerLinkActive="active">ОФЕРТА</a>
+          <a class="footer-navigation" href="https://www.facebook.com/sushishtat"> FACEBOOK</a>
+        </div>
+        <div class="col">
+          <a class="footer-navigation nav-link" [routerLink]="[ '/about']" routerLinkActive="active">ПРО НАС</a>
+          <a class="footer-navigation nav-link" [routerLink]="[ '/delivery']" routerLinkActive="active"
+            href="">ДОСТАВКА</a>
+          <a class="footer-navigation nav-link" href="" [routerLink]="[ '/contacts']"
+            routerLinkActive="active">КОНТАКТИ</a>
+          <a class="footer-navigation" href="https://www.instagram.com/sushishtat/">INSTAGRAM</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-12 align-items-center order-last footer-col col-xs-12">
+      <div class="d-flex flex-column align-items-center">
+        <div class="">
+          <a class="navbar-brand" [routerLink]="[ '' ]"> <img class="logo-img"
+              style="width: 140px; height: 72px;margin-bottom: 25px;" src="../../../assets/images/sushishtat.svg"
+              alt=""></a></div>
+        <div class="">
+          <a href="mailto:sushishtat.official@gmail.com" type="mailto"
+            class="email-style">sushishtat.official@gmail.com</a></div>
+        <div class="">
+          <a href="tel:0686080008" type="tel" class="tel-style">(068) 608 00 08</a></div>
+        <div class="">
+          <a href="tel:0936080008" type="tel" class="tel-style">(093) 608 00 08</a>
+        </div>
+        <div class="schedule-style text-center">щодня без вихідних з 11:00 до 00:00</div>
+        <div class="address-style text-center">м.Львів, вул.Кульпарківська 230 / вул.Богдана Хмельницького 143</div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-6 order-lg-last footer-col col-xs-12">
+      <div class="row flex-nowrap">
+        <div class="col">
+          <div class="row align-items-end">
+            <a class="footer-navigation text-end" [routerLink]="['/rolls']">РОЛИ</a>
+            <a class="footer-navigation text-end" href="" [routerLink]="['/sushi']">СУШІ</a>
+            <a class="footer-navigation text-end" [routerLink]="['/sets']">СЕТИ</a>
+            <a class="footer-navigation text-end" href="" [routerLink]="['/wok']">WOK</a></div>
+        </div>
+        <div class="col">
+          <div class="row align-items-end">
+            <a class="footer-navigation text-end" href="" [routerLink]="['/soups']">СУПИ</a>
+            <a class="footer-navigation text-end" [routerLink]="['/salads']">САЛАТИ</a>
+            <a class="footer-navigation text-end" [routerLink]="['/addition']">ДОДАТКИ </a>
+            <a class="footer-navigation text-end" href="" [routerLink]="['/drinks']">НАПОЇ</a></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row footer-bottom-row justify-content-between">
+    <div class="col">© 2021 СушіШтат</div>
+    <div class="col d-flex justify-content-center"><img class="pay-icon" src="../../../assets/images/paySys.svg"></div>
+    <div class="col text-end">Powered by Crayfish</div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,IAAI,CAAC;EACH,KAAK,EAAE,KAAK;EACZ,gBAAgB,EAAE,KAAK;CACxB;;AAED,AAAA,UAAU,CAAC;EACT,OAAO,EAAE,qBAAqB;EAC9B,MAAM,EAAE,CAAC;EACT,SAAS,EAAE,IAAI;CAChB;;AAED,AAAA,CAAC,CAAC;EACA,SAAS,EAAE,IAAI;EACf,KAAK,EAAE,IAAI;EACX,SAAS,EAAE,IAAI;CAChB;;AAED,AAAA,EAAE;AACF,EAAE,CAAC;EACD,WAAW,EAAE,MAAM;CACpB",
+    "sources": [
+        "oferta.component.scss"
+    ],
+    "names": [],
+    "file": "oferta.component.css"
+}

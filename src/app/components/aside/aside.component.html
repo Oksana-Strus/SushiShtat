@@ -1,0 +1,44 @@
+<nav class="nav__cont">
+  <ul class="nav">
+    <li class="nav__items mx-2" *ngFor="let category of userCategories">
+      <img class="product-icon" [src]="sanitizer.bypassSecurityTrustResourceUrl(category.icon)" alt="">
+      <a class="name-category" [routerLink]="['/products', category.id]">{{category.title| uppercase}}</a>
+    </li>
+  </ul>
+</nav>
+<div class="right-box py-4 px-4" [class]="isOpen ? 'open' : ''">
+  <div class="cart-header row">
+    <h5 class="cart-name col">Корзина</h5>
+    <h5 class="cart-counter col text-end">{{basket.totalPrice}} грн</h5>
+    <div class="mini-order-card px-4 py-2 my-2" [class]="isOpen ? 'open' : ''" *ngFor="let item of basket.items">
+      <div class="header-mini-card d-flex justify-content-between align-items-center py-2">
+        <div class="title">{{item.title}}</div>
+        <div class="d-flex justify-content-end">
+          <div class="d-flex wrapper-close-btn size-circle">
+            <button type="button" (click)="removeAllItems(item.productId)" class="btn-close btn-close-white "
+              aria-label="Close"></button>
+          </div>
+        </div>
+      </div>
+      <div class="row body-mini-card">
+        <div class="col-1">
+          <div class="col action-btn my-2 size-circle" (click)="addItem(item.productId)"><i class="fas fa-plus"></i>
+          </div>
+          <div class="col action-btn my-2 size-circle" (click)="removeItem(item.productId)"><i class="fas fa-minus"></i>
+          </div>
+        </div>
+        <div class="col-3 counter">{{item.quantity}}<span class="color-light-grey">x</span></div>
+        <div class="col"><img style=" height: 40px;" [src]="item.image" alt=""></div>
+        <div class="col-2">
+          <div class="row d-flex justify-content-end">{{item.weight}}</div>
+          <div class="row d-flex justify-content-end">{{item.price}} грн</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button [routerLink]="[ '/basket']" type="button" [disabled]="basket.totalItems===0"
+    class="btn w-100 create-order-btn" (click)="openBasket()">ОФОРМИТИ
+    ЗАМОВЛЕННЯ</button>
+
+</div>
+<div class="red-circle"><img src="../../../assets/images/whitemobilePhone.svg" alt=""></div>

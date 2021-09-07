@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="section-category-container d-flex flex-wrap">
+    <h2 class="d-block category-name col w-25 order-0">{{category?.title | uppercase }}</h2>
+    <div class="row category-row w-100 order-xl-2 order-2 justify-content-evenly">
+      <div class="card col-3" *ngFor="let product of products; index as i">
+        <div class="sushi-square-icon">
+          <img src="../../../assets/images/sushi-mini-icon.svg" alt="" class="sort-icon"></div>
+        <img [src]="product.image" class="card-img-top">
+        <div class="card-body">
+          <h3 class="card-title">{{product.title}}</h3>
+          <p class="card-text">{{product.description}}</p>
+          <div class="row align-items-center justify-content-between">
+            <button class="btn btn-add-to-cart">В КОРЗИНУ</button>
+            <span class="price d-block">{{product.price}} грн</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

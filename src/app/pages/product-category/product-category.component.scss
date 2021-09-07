@@ -1,0 +1,273 @@
+html {
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: black;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .container {
+    padding: 30px 100px 100px 80px;
+    margin: 0;
+    min-width: 100%;
+  
+    @media screen and(max-width:1000px) {
+      padding: 30px 20px 100px;
+    }
+  }
+  
+  .discount-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+  }
+  
+  .col {
+    width: 50%;
+  
+    @media screen and(max-width:900px) {
+      min-width: 100%;
+  
+    }
+  }
+  
+  .categories {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  
+    @media screen and(max-width:900px) {
+      flex-wrap: wrap;
+      width: 100%;
+    }
+  }
+  
+  .category {
+    width: 189px;
+    text-decoration: none;
+    color: white;
+    height: 143px;
+    border-radius: 24px;
+    background-color: #1f1f1f;
+    border: 2px solid #1f1f1f;
+    padding: 20px 8px;
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    margin: 0 8px;
+  
+    @media screen and(max-width:1110px) {
+      height: 104px;
+      width: 115px;
+      padding: 10px 0;
+    }
+  
+    @media screen and(max-width:900px) {
+      padding: 0;
+      margin: 10px;
+      width: calc(100%/5);
+    }
+  }
+  
+  .category:hover {
+    border: 2px solid white;
+  }
+  
+  h5 {
+    padding: 0 0 18px;
+    font-size: 16px;
+    font-weight: 700;
+  
+    @media screen and(max-width:1110px) {
+      font-size: 12px;
+    }
+  }
+  
+  .icon-style {
+    width: 48px;
+    height: 48px;
+  
+    @media screen and(max-width:1300px) {
+      height: 36px;
+      width: 36px;
+    }
+  }
+  
+  
+  h4.header {
+    margin: 50px 0 24px;
+    padding: 0;
+    text-align: center;
+  }
+  
+  .section-category-container {
+    margin: 0 0 64px;
+  
+  }
+  
+  .header-top-positions {
+    font-size: 64px;
+    margin: 0 0 64px;
+    color: #1f1f1f;
+    text-align: center;
+  }
+  
+  h2.category-name {
+    font-weight: 800;
+    font-size: 48px;
+    padding-bottom: 50px;
+  }
+  
+  
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  h3.card-title {
+    font-size: 20px;
+    color: #fbfbfb;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding: 0;
+  
+    @media screen and(max-width:1300px) {
+      height: 50px;
+      overflow: hidden;
+    }
+  
+    @media screen and(max-width:576px) {
+      margin-bottom: 8px;
+      font-size: 14px;
+      height: min-content;
+    }
+  }
+  
+  .card-text {
+    font-weight: 500;
+    color: #b7b7b7;
+    font-size: 14px;
+    height: 100px;
+    overflow: hidden;
+  
+    @media screen and(max-width:576px) {
+      font-size: 10px;
+      height: min-content;
+    }
+  }
+  
+  .card {
+    background-color: #1f1f1f;
+    padding: 40px 32px 32px;
+    border-radius: 24px;
+    margin: 10px;
+    width: calc(100%/4.2 - 10px) !important;
+  
+    @media screen and(max-width:1300px) {
+      padding: 32px 14px 24px;
+    }
+  
+    @media screen and(max-width:1000px) {
+      padding: 32px 24px 24px;
+      width: calc(100%/2.2 - 10px) !important;
+    }
+  
+    @media screen and(max-width:576px) {
+      padding: 20px 16px 16px;
+    }
+  }
+  
+  .sushi-square-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    padding: 8px 4px;
+    margin-left: 8px;
+    display: flex;
+    align-self: flex-end;
+    background-color: #fbfbfb;
+  
+    @media screen and(max-width:576px) {
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      margin: 0;
+      padding: 4px;
+    }
+  }
+  
+  .sort-icon {
+    width: 28px;
+    height: 20px;
+  
+    @media screen and(max-width:576px) {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  
+  .card-img-top {
+    margin: 0 0 32px;
+    transition: transform .25s;
+  }
+  
+  .card-img-top:hover {
+    transition: transform .25s;
+    transform: scale(1.1);
+  }
+  
+  .btn-add-to-cart {
+    width: 130px;
+    height: 45px;
+    padding: 12px 24px;
+    border: 2px solid #e31031;
+    background-color: #e31031;
+    color: #fbfbfb;
+    font-weight: 600;
+    border-radius: 12px;
+    font-size: 14px;
+  
+  
+    @media screen and(max-width:1400px) {
+      width: 115px;
+      padding: 12px 16px;
+    }
+  }
+  
+  .price {
+    font-size: 18px;
+    font-weight: 700;
+    width: fit-content;
+  
+    @media screen and(max-width:1300px) {
+      width: min-content;
+    }
+  
+    @media screen and(max-width:576px) {
+      font-size: 14px;
+    }
+  }
+  
+  
+  .row.category-row {
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  .in-cart-price {
+    display: flex;
+    flex-direction: row;
+  }
+
+
+  
+  .card-body {
+    padding: 0;
+    margin: 0;
+  }
+  

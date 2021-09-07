@@ -1,0 +1,17 @@
+<div class="container-fluid text-light pt-5 px-5">
+  <div class="d-flex align-items-start">
+    <div class="nav flex-column nav-pills me-3">
+      <button class="nav-link text-white ms-5" type="button" [routerLink]="[ 'discount' ]"
+        routerLinkActive="active bg-danger">Discount</button>
+      <button class="nav-link text-white ms-5" type="button" [routerLink]="[ 'category' ]"
+        routerLinkActive="active bg-danger">Category</button>
+      <button class="nav-link text-white ms-5" type="button" [routerLink]="[ 'product' ]"
+        routerLinkActive="active  bg-danger">Product</button>
+      <!-- <button class="nav-link" type="button" [routerLink]="[ 'order' ]" routerLinkActive="active">Order</button> -->
+      <!-- <button class="btn btn-warning" type="button" (click)="signOut()">Log-out</button> -->
+    </div>
+    <div class="tab-content" style="width: 100%;">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

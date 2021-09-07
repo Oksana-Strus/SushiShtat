@@ -1,0 +1,39 @@
+<div class="container">
+  <form [formGroup]="discountForm" (ngSubmit)="editStatus ? updateDiscount() : createDiscount()">
+    <div class="mb-3">
+      <label for="image" class="form-label">Image</label>
+      <input type="file" class="form-control" #image id="image" aria-describedby="image" aria-label="Upload"
+        (change)="uploadFileImage($event)">
+    </div>
+    <div class="row">
+      <div class="image-box mx-5 mb-5 col">
+        <h5>IMAGE</h5>
+        <img width="100px" [src]="discountForm.value.image" alt="">
+      </div>
+    </div>
+    <button [disabled]="discountForm.invalid" type="submit" class="btn btn-primary"
+      [textContent]="editStatus ? 'Save' : 'Add'"></button>
+  </form>
+  <hr>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" class="table-style">#</th>
+        <th scope="col" class="table-style">Image</th>
+        <th scope="col" class="table-style">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="align-middle" *ngFor="let discount of adminDiscounts; index as i">
+        <td class="table-style">{{ i + 1 }}</td>
+        <td>
+          <img [src]="discount.image" width="80px" alt="image">
+        </td>
+        <td>
+          <button (click)="editDiscount(discount)" class="btn btn-warning me-3">edit</button>
+          <button (click)="deleteDiscount(discount)" class="btn btn-danger">delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

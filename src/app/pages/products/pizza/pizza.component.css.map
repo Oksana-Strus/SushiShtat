@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "pizza.component.scss"
+    ],
+    "names": [],
+    "file": "pizza.component.css"
+}

@@ -1,0 +1,150 @@
+.btn {
+  &-back-to-menu {
+    border: 2px solid #e31031;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all .25s;
+    cursor: pointer;
+  color: #fbfbfb;
+
+
+    &:hover {
+      background-color: #e31031;
+    }
+  }
+
+  &-arrangment-order {
+    border-radius: 12px;
+  }
+
+}
+
+.column-container {
+  background-color: #1f1f1f;
+  border-radius: 24px;
+}
+
+.check {
+  background-color: transparent;
+  width: 70px;
+  color: white;
+  padding: 8px;
+  border: none;
+
+  &::placeholder {
+    color: white;
+  }
+}
+
+.number-input {
+  display: inline-flex;
+}
+
+.number-input,
+.number-input * {
+  box-sizing: border-box;
+}
+
+.number-input button:after {
+  display: inline-block;
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: '\f068';
+  transform: translate(-50%, -50%);
+}
+
+.number-input button.plus:after {
+  content: '\f067';
+
+}
+
+input.quantity {
+  width: 50px;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  color: white;
+  font-weight: 700;
+}
+
+.button-action {
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+  color: white;
+  border: none;
+}
+
+.wrapper-cross {
+  width: 20px;
+  height: 20px;
+  background-color: #e31031;
+  color: white;
+  border: none;
+  position: absolute;
+  border-radius: 50%;
+  background-image: '\f00d';
+  // position: absolute;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: '\f00d';
+  transform: translate(-50%, -50%);
+}
+
+.btn-close {
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 90%;
+  height: 90%;
+  padding: 0;
+  opacity: 100%;
+}
+
+.mini-order-card {
+  background: #0e0f10;
+  border-radius: 12px;
+}
+
+.size-circle {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  padding: 4px;
+}
+
+.wrapper-close-btn {
+  background-color: #e31031;
+  ;
+
+  :hover {
+    transform: rotate(90deg);
+    transition: transform .25s;
+  }
+}
+
+.action-btn {
+  background-color: rgba(66, 66, 66, 0.452);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+
+.counter {
+  font-size: 50px;
+  line-height: 80%;
+}
+
+.color-light-grey {
+  color: #3d3d3dad;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 16px;
+}

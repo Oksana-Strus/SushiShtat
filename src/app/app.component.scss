@@ -1,0 +1,12 @@
+main {
+  background-color: black;
+  color: white;
+  min-height: calc(100vh - 64px - 447px);
+
+  @media screen and(max-width:1230px) {
+    min-height: calc(100vh - 458px - 300px);
+    ;
+  }
+}
+
+

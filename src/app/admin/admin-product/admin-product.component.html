@@ -1,0 +1,86 @@
+<div class="container">
+  <form [formGroup]="productForm" (ngSubmit)="editStatus ? updateProduct() : createProduct()">
+    <div class="mb-3">
+      <label for="category" class="form-label">Choose a category:</label>
+      <select class="form-select" aria-label="Default select example" formControlName="categoryId" id="categoryId">
+        <option selected disabled value='null'>Choose a category:</option>
+        <option *ngFor="let category of userCategories" [value]="category.id">{{category.title |lowercase}}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input formControlName="title" type="text" class="form-control" id="title">
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <input formControlName="description" type="text" class="form-control" id="description">
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Weight</label>
+      <input formControlName="weight" type="text" class="form-control" id="weight">
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input formControlName="price" type="number" class="form-control" id="price">
+    </div>
+    <div class="mb-3">
+      <label for="icon" class="form-label">Icon</label>
+      <input type="file" class="form-control" #icon id="icon" aria-describedby="icon" aria-label="Upload"
+        (change)="uploadFileIcon($event)">
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Image</label>
+      <input type="file" class="form-control" #image id="image" aria-describedby="image" aria-label="Upload"
+        (change)="uploadFileImage($event)">
+    </div>
+    <div class="row">
+      <div class="icon-box mx-5 mb-5 col">
+        <h5>ICON</h5>
+        <img width="100px" [src]="sanitizer.bypassSecurityTrustResourceUrl(productForm.value.icon)" alt="">
+      </div>
+      <div class="image-box mx-5 mb-5 col">
+        <h5>IMAGE</h5>
+        <img width="100px" [src]="productForm.value.image" alt="">
+      </div>
+    </div>
+    <button [disabled]="productForm.invalid" type="submit" class="btn btn-primary"
+      [textContent]="editStatus ? 'Save' : 'Add'"></button>
+    <button type="button" class="btn btn-secondary mx-3" (click)=" cancelClick()">Cancel</button>
+  </form>
+  <hr>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" class="table-style">#</th>
+        <th scope="col" class="table-style">Category</th>
+        <th scope="col" class="table-style">Title</th>
+        <th scope="col" class="table-style">Description</th>
+        <th scope="col" class="table-style">Weight</th>
+        <th scope="col" class="table-style">Price</th>
+        <th scope="col" class="table-style">Image</th>
+        <th scope="col" class="table-style">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="align-middle" *ngFor="let product of adminProducts; index as i">
+        <td class="table-style">{{ i + 1 }}</td>
+        <td class="table-style">{{getCategoryName(product.categoryId)}}</td>
+        <td class="table-style">{{ product.title}}</td>
+        <td class="table-style">{{ product.description |slice:0:20 }} ...</td>
+        <td class="table-style">{{ product.weight}}</td>
+        <td class="table-style">{{ product.price}} грн</td>
+
+        <td>
+          <img [src]="sanitizer.bypassSecurityTrustResourceUrl(product.icon)" width="80px" alt="icon">
+        </td>
+        <td>
+          <img [src]="product.image" width="80px" alt="image">
+        </td>
+        <td>
+          <button (click)="editProduct(product)" class="btn btn-warning me-3">edit</button>
+          <button (click)="deleteProduct(product)" class="btn btn-danger">delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
