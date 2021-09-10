@@ -30,9 +30,10 @@ export class BasketComponent implements OnInit {
     })
   }
 
-  hello(): void {
+  showClientsOrder(): void {
     console.log(this.orderForm)
   }
+
   initOrderForm(): void {
     this.orderForm = this.fb.group({
       name: [null, Validators.required],

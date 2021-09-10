@@ -17,11 +17,10 @@ export class AsideComponent implements OnInit {
   public basket: IBasket = new Basket();
   public ordersArray: Array<IProduct> = [];
 
-
   constructor(
     private categoryService: CategoryService,
     public sanitizer: DomSanitizer,
-    private orderService: OrdersService
+    private orderService: OrdersService,
   ) { }
 
   ngOnInit(): void {
@@ -49,7 +48,7 @@ export class AsideComponent implements OnInit {
   }
 
   openBasket(): void {
-    this.orderService.checkOpenBasket$.next(true)
+    this.orderService.checkOpenBasket$.next(true);
   }
 
   initBasket(): void {

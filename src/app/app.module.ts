@@ -11,15 +11,6 @@ import { AboutComponent } from './pages/about/about.component';
 import { DiscountsComponent } from './pages/discounts/discounts.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { BasketComponent } from './pages/basket/basket.component';
-
-import { RollsComponent } from './pages/products/rolls/rolls.component';
-import { SetsComponent } from './pages/products/sets/sets.component';
-import { SushiComponent } from './pages/products/sushi/sushi.component';
-import { PizzaComponent } from './pages/products/pizza/pizza.component';
-import { WokComponent } from './pages/products/wok/wok.component';
-import { SoupsComponent } from './pages/products/soups/soups.component';
-import { SaladsComponent } from './pages/products/salads/salads.component';
-// import { DrinksComponent } from './pages/products/drinks/drinks.component';
 import { OfertaComponent } from './pages/oferta/oferta.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { AsideComponent } from './components/aside/aside.component';
@@ -29,9 +20,11 @@ import { AdminCategoryComponent } from './admin/admin-category/admin-category.co
 import { AdminProductComponent } from './admin/admin-product/admin-product.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ProductCategoryComponent } from './pages/product-category/product-category.component';
-
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { ClientOrderComponent } from './pages/client-order/client-order.component';
 
 
 @NgModule({
@@ -45,14 +38,6 @@ import { ProductCategoryComponent } from './pages/product-category/product-categ
     DiscountsComponent,
     PaymentComponent,
     BasketComponent,
-    RollsComponent,
-    SetsComponent,
-    SushiComponent,
-    PizzaComponent,
-    WokComponent,
-    SoupsComponent,
-    SaladsComponent,
-    // DrinksComponent,
     OfertaComponent,
     ContactsComponent,
     AsideComponent,
@@ -61,6 +46,7 @@ import { ProductCategoryComponent } from './pages/product-category/product-categ
     AdminCategoryComponent,
     AdminProductComponent,
     ProductCategoryComponent,
+    ClientOrderComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +54,14 @@ import { ProductCategoryComponent } from './pages/product-category/product-categ
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyCE__kPWV4O1pz8WETsekBCvFrDxYxHINA",
+      authDomain: "sushi-stat.firebaseapp.com",
+      storageBucket: "sushi-stat.appspot.com",
+      projectId: "sushi-stat",
+    }),
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AngularFireStorage } from 'angularfire2/storage';
 // import { Observable } from 'rxjs';
 import { IDiscount } from 'src/app/shared/models/discount/discount.model';
 import { DiscountService } from 'src/app/shared/services/discount/discount.service';
@@ -15,7 +16,6 @@ export class AdminDiscountComponent implements OnInit {
   public discountForm!: FormGroup;
   @ViewChild('image') imageInput!: ElementRef;
   public editStatus = false;
-  // public uploadPercent: Observable<number> | undefined | null;
   public imageStatus: boolean = false;
   private editDiscountID = 0;
 
@@ -23,7 +23,9 @@ export class AdminDiscountComponent implements OnInit {
   constructor(
     private discountService: DiscountService,
     private fb: FormBuilder,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    private afStorage: AngularFireStorage,
+
   ) { }
 
   ngOnInit(): void {
@@ -67,27 +69,39 @@ export class AdminDiscountComponent implements OnInit {
     this.imageInput.nativeElement.value = "";
   }
 
-  getBase64(file: any) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    });
-  }
+  // getBase64(file: any) {
+  //   return new Promise((resolve, reject) => {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(file);
+  //     reader.onload = () => resolve(reader.result);
+  //     reader.onerror = error => reject(error);
+  //   });
+  // }
 
+
+  // uploadFileImage(event: any): void {
+  //   const file = event.target.files[0];
+  //   const task = this.getBase64(file)
+  //     .then(data => {
+  //       this.discountForm.patchValue({
+  //         image: data
+  //       })
+  //     });
+  // }
 
   uploadFileImage(event: any): void {
     const file = event.target.files[0];
-    const task = this.getBase64(file)
-      .then(data => {
+    const filePath = `images/${file.name}`;
+    const task = this.afStorage.upload(filePath, file);
+    task.then(image => {
+      this.afStorage.ref(`images/${image.metadata.name}`).getDownloadURL().subscribe(url => {
+        // this.icon = url;
         this.discountForm.patchValue({
-          image: data
+          image: url
         })
       });
+    });
   }
-
-
 
   deleteDiscount(discount: IDiscount): void {
     this.discountService.deleteJSONDiscount(discount.id as number).subscribe(

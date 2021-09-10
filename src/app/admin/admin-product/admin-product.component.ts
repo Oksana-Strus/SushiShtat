@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
+import { AngularFireStorage } from 'angularfire2/storage';
 import { ICategory } from 'src/app/shared/models/category/category.model';
 import { IProduct } from 'src/app/shared/models/product/product.model';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
@@ -18,9 +18,6 @@ export class AdminProductComponent implements OnInit {
   @ViewChild('icon') iconInput!: ElementRef;
   @ViewChild('image') imageInput!: ElementRef;
   public editStatus = false;
-  // public uploadPercent: Observable<number> | undefined | null;
-  public icon: string = '';
-  public imageStatus: boolean = false;
   private editProductID = 0;
   public userCategories: Array<ICategory> = [];
   constructor(
@@ -28,6 +25,7 @@ export class AdminProductComponent implements OnInit {
     private fb: FormBuilder,
     public sanitizer: DomSanitizer,
     private categoryService: CategoryService,
+    private afStorage: AngularFireStorage,
   ) { }
 
   ngOnInit(): void {
@@ -68,7 +66,7 @@ export class AdminProductComponent implements OnInit {
         console.log(err);
       }
     )
-    this.imageStatus = false;
+    // this.imageStatus = false;
     this.resetForm();
   }
 
@@ -87,33 +85,32 @@ export class AdminProductComponent implements OnInit {
     this.resetForm();
   }
 
-  getBase64(file: any) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    });
-  }
-
   uploadFileImage(event: any): void {
     const file = event.target.files[0];
-    const task = this.getBase64(file)
-      .then(data => {
+    const filePath = `images/${file.name}`;
+    const task = this.afStorage.upload(filePath, file);
+    task.then(image => {
+      this.afStorage.ref(`images/${image.metadata.name}`).getDownloadURL().subscribe(url => {
+        // this.icon = url;
         this.productForm.patchValue({
-          image: data
+          image: url
         })
       });
+    });
   }
 
   uploadFileIcon(event: any): void {
     const file = event.target.files[0];
-    const task = this.getBase64(file)
-      .then(data => {
+    const filePath = `icons/${file.name}`;
+    const task = this.afStorage.upload(filePath, file);
+    task.then(image => {
+      this.afStorage.ref(`icons/${image.metadata.name}`).getDownloadURL().subscribe(url => {
+        // this.icon = url;
         this.productForm.patchValue({
-          icon: data
+          icon: url
         })
       });
+    });
   }
 
   deleteProduct(product: IProduct): void {

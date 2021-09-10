@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AngularFireStorage } from 'angularfire2/storage';
 import { Observable } from 'rxjs';
 import { ICategory } from 'src/app/shared/models/category/category.model';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
@@ -16,7 +17,7 @@ export class AdminCategoryComponent implements OnInit {
   @ViewChild('icon') iconInput!: ElementRef;
   @ViewChild('image') imageInput!: ElementRef;
   public editStatus = false;
-  public uploadPercent: Observable<number> | undefined | null;
+  // public uploadPercent: Observable<number> | undefined | null;
   public icon: string = '';
   public imageStatus: boolean = false;
   private editCategoryID = 0;
@@ -24,7 +25,9 @@ export class AdminCategoryComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private fb: FormBuilder,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    private afStorage: AngularFireStorage,
+
   ) { }
 
   ngOnInit(): void {
@@ -73,34 +76,42 @@ export class AdminCategoryComponent implements OnInit {
 
   }
 
-  getBase64(file: any) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    });
-  }
+  // getBase64(file: any) {
+  //   return new Promise((resolve, reject) => {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(file);
+  //     reader.onload = () => resolve(reader.result);
+  //     reader.onerror = error => reject(error);
+  //   });
+  // }
 
 
   uploadFileImage(event: any): void {
     const file = event.target.files[0];
-    const task = this.getBase64(file)
-      .then(data => {
+    const filePath = `images/${file.name}`;
+    const task = this.afStorage.upload(filePath, file);
+    task.then(image => {
+      this.afStorage.ref(`images/${image.metadata.name}`).getDownloadURL().subscribe(url => {
+        // this.icon = url;
         this.categoryForm.patchValue({
-          image: data
+          image: url
         })
       });
+    });
   }
 
   uploadFileIcon(event: any): void {
     const file = event.target.files[0];
-    const task = this.getBase64(file)
-      .then(data => {
+    const filePath = `icons/${file.name}`;
+    const task = this.afStorage.upload(filePath, file);
+    task.then(image => {
+      this.afStorage.ref(`icons/${image.metadata.name}`).getDownloadURL().subscribe(url => {
+        // this.icon = url;
         this.categoryForm.patchValue({
-          icon: data
+          icon: url
         })
       });
+    });
   }
 
   deleteCategory(category: ICategory): void {

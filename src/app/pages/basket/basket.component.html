@@ -2,7 +2,7 @@
   <div class="px-lg-5 px-2">
     <h1 class="py-lg-2 ">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h1>
 
-    <form [formGroup]="orderForm" (ngSubmit)="hello()">
+    <form [formGroup]="orderForm" (ngSubmit)="showClientsOrder()">
       <div class="row gx-5">
         <div class="col-4">
           <div class="column-container py-lg-4 py-2 px-lg-4 px-2">
@@ -129,7 +129,7 @@
             </div>
             <div class="text-center py-lg-4 py-1">Введіть свою адресу щоб дізнатися час доставки</div>
             <button [disabled]="orderForm.invalid" type="submit"
-              class="btn btn-secondary w-100 btn-arrangment-order">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</button>
+              class="btn btn-secondary w-100 btn-arrangment-order" [routerLink]="['/clientsOrder']">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</button>
           </div>
         </div>
       </div>
