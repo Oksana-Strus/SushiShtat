@@ -1,10 +1,8 @@
-<nav class="nav__cont">
-  <ul class="nav">
-    <li class="nav__items mx-2" *ngFor="let category of userCategories">
-      <img class="product-icon" [src]="sanitizer.bypassSecurityTrustResourceUrl(category.icon)" alt="">
-      <a class="name-category" [routerLink]="['/products', category.id]">{{category.title| uppercase}}</a>
-    </li>
-  </ul>
+<nav class="nav__cont sidebar">
+  <a class="sidebar-item" *ngFor="let category of userCategories" [routerLink]="['/products', category.id]">
+    <h3>{{category.title| uppercase}}</h3>
+    <img class="product-icon" [src]="sanitizer.bypassSecurityTrustResourceUrl(category.icon)" alt="">
+  </a>
 </nav>
 <div class="right-box py-4 px-4" [class]="isOpen ? 'open' : ''">
   <div class="cart-header row">

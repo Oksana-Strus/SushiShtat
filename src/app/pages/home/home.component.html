@@ -1,6 +1,6 @@
 <div class="container-fluid px-lg-5 px-2 py-lg-5 py-2">
-  <div class="px-lg-5 px-2">
-    <div class="col" *ngFor="let discount of userDiscounts">
+  <div class="px-lg-5 px-2 row">
+    <div class="col col-lg-6" *ngFor="let discount of userDiscounts">
       <img class="discount-img" [src]="discount.image" alt="">
     </div>
     <div class="section-category-container">
@@ -20,23 +20,25 @@
       <h2 class="d-block category-name col w-25 order-0">{{category.title |uppercase}}</h2>
       <button class="btn btn-see-all-products col-4 order-xl-1 order-3 flex-grow-1 flex-xl-grow-0"> <a href=""
           [routerLink]="['/products', category.id]">ДИВИТИСЬ ВСІ {{category.title |uppercase}}</a></button>
-      <div class="row category-row w-100 order-xl-2 order-2 justify-content-evenly"
-        *ngFor="let product of getProductsForCategory(category.id)">
-        <div class="card col-3">
-          <div class="sushi-square-icon">
-            <img src="../../../assets/images/sushi-mini-icon.svg" alt="" class="sort-icon"></div>
-          <img [src]="product.image" class="card-img-top">
-          <div class="card-body">
-            <h3 class="card-title">{{product.title}}</h3>
-            <p class="card-text"><span>{{product.weight}}:</span> {{product.description}}</p>
-            <div class="row align-items-center justify-content-between">
-              <button class="btn btn-add-to-cart" (click)="addToBasket(product)">В
-                КОРЗИНУ</button>
-              <span class="price d-block">{{product.price}} грн</span>
+
+      <div class="w-100 order-xl-2 order-2 d-flex flex-wrap justify-content-start">
+        <div class="col-3 p-3" *ngFor="let product of getProductsForCategory(category.id)">
+          <div class="card w-100">
+            <img [src]="product.image" class="card-img-top">
+            <div class="card-body">
+              <h3 class="card-title">{{product.title}}</h3>
+              <p class="card-text"><span>{{product.weight}}:</span> {{product.description}}</p>
+              <div class="row align-items-center justify-content-between">
+                <button class="btn btn-add-to-cart" (click)="addToBasket(product)">В
+                  КОРЗИНУ</button>
+                <span class="price d-block">{{product.price}} грн</span>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
+
     </div>
   </div>
 </div>

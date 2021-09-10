@@ -13,7 +13,7 @@ import { PizzaComponent } from './pages/products/pizza/pizza.component';
 import { WokComponent } from './pages/products/wok/wok.component';
 import { SoupsComponent } from './pages/products/soups/soups.component';
 import { SaladsComponent } from './pages/products/salads/salads.component';
-import { DrinksComponent } from './pages/products/drinks/drinks.component';
+// import { DrinksComponent } from './pages/products/drinks/drinks.component';
 import { OfertaComponent } from './pages/oferta/oferta.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { AdminComponent } from './admin/admin.component';
