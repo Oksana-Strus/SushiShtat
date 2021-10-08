@@ -24,15 +24,15 @@ export class ProductService {
     return this.http.get<any>(`${this.api.products}/${id}`)
   }
 
-  createJSONProduct(category: IProduct): Observable<any> {
-    return this.http.post<any>(this.api.products, category);
+  createJSONProduct(product: IProduct): Observable<any> {
+    return this.http.post<any>(this.api.products, product);
   }
 
   deleteJSONProduct(id: number): Observable<any> {
     return this.http.delete<any>(`${this.api.products}/${id}`);
   }
 
-  updateJSONProduct(category: IProduct, id: number): Observable<any> {
-    return this.http.patch<any>(`${this.api.products}/${id}`, category);
+  updateJSONProduct(product: IProduct, id: number): Observable<any> {
+    return this.http.patch<any>(`${this.api.products}/${id}`, product);
   }
 }

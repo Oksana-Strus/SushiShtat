@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openBasket(): void {
-    this.orderService.checkOpenBasket$.next(true)
+    this.orderService.checkOpenBasket$.next(!this.orderService.checkOpenBasket$.getValue());
   }
 
   loadProducts(): void {

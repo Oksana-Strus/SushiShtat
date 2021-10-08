@@ -1,13 +1,32 @@
 import { IProduct } from "../product/product.model";
 
+export enum PaymentType {
+    Cash,
+    Card,
+    Online
+}
+
 export interface IOrder {
-    totalPrice: number
-    items: Array<IBasketItem>
+    totalPrice: number;
+    items: Array<IBasketItem>;
+    paymentType: PaymentType;
     options: Array<IOrderOption>;
+    deliveryInfo?: IDeliveryInfo
 
     updateBasketItems(basket: IBasket): void;
+    updateDeliveryInfo(info: IDeliveryInfo): void;
     addOption(option: OrderOption, quantity: number): void;
     removeOption(option: OrderOption, quantity: number): void;
+}
+
+export interface IDeliveryInfo {
+    name: string,
+    tel: number,
+    address: string,
+    house: number,
+    appartaments: number,
+    entrance: number,
+    comment?: string,
 }
 
 export interface IBasket {
@@ -39,7 +58,9 @@ export enum OrderOption {
 
 export class Order implements IOrder {
     totalPrice: number = 0;
+    paymentType: PaymentType = PaymentType.Cash;
     items: IBasketItem[] = [];
+    deliveryInfo?: IDeliveryInfo;
     options: Array<IOrderOption> = [
         {
             option: OrderOption.Persons,
@@ -61,6 +82,10 @@ export class Order implements IOrder {
     updateBasketItems(basket: IBasket) {
         this.totalPrice = basket.totalPrice;
         this.items = basket.items;
+    }
+
+    updateDeliveryInfo(deliveryInfo: IDeliveryInfo): void {
+        this.deliveryInfo = deliveryInfo;
     }
 
     addOption(option: OrderOption, quantity: number) {
@@ -92,17 +117,6 @@ export class Basket implements IBasket {
     totalItems: number = 0;
     items: Array<IBasketItem> = [];
 
-    // constructor() {
-    //     this.items.push({
-    //         productId: 1,
-    //         title: "Тоторі",
-    //         price: 1,
-    //         quantity: 2,
-    //         image: '',
-    //         weight: '100 г'
-    //     })
-    // }
-
     addProductToBasket(product: IProduct, quantity: number) {
         let existingItem = this.items.find(p => p.productId == product.id);
 
@@ -117,10 +131,8 @@ export class Basket implements IBasket {
                 image: product.image,
                 weight: product.weight
             }
-
             this.items.push(basketProduct);
         }
-
         this.recalculateItemFields();
     }
 
@@ -135,7 +147,6 @@ export class Basket implements IBasket {
             let index = this.items.indexOf(existingItem);
             this.items.splice(index, 1)
         }
-
         this.recalculateItemFields();
     }
 

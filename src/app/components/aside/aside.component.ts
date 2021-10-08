@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { ICategory } from 'src/app/shared/models/category/category.model';
 import { Basket, IBasket } from 'src/app/shared/models/order/order.model';
 import { IProduct } from 'src/app/shared/models/product/product.model';
@@ -17,17 +18,18 @@ export class AsideComponent implements OnInit {
   public basket: IBasket = new Basket();
   public ordersArray: Array<IProduct> = [];
 
+
   constructor(
+    private router: Router,
     private categoryService: CategoryService,
     public sanitizer: DomSanitizer,
-    private orderService: OrdersService,
+    private orderService: OrdersService
   ) { }
 
   ngOnInit(): void {
     this.loadCategories();
     this.initOpenBasket();
     this.initBasket();
-
   }
 
   loadCategories(): void {
@@ -41,14 +43,14 @@ export class AsideComponent implements OnInit {
   }
 
   initOpenBasket(): void {
-    this.orderService.checkOpenBasket$.subscribe(data => {
-      console.log(data);
-      this.isOpen = !this.isOpen;
+    this.orderService.checkOpenBasket$.subscribe(isOpen => {
+      this.isOpen = isOpen;
     })
   }
 
   openBasket(): void {
-    this.orderService.checkOpenBasket$.next(true);
+    this.orderService.checkOpenBasket$.next(false)
+    this.router.navigateByUrl('basket');
   }
 
   initBasket(): void {

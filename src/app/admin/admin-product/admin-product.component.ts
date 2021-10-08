@@ -58,7 +58,6 @@ export class AdminProductComponent implements OnInit {
 
   createProduct(): void {
     const product = this.productForm.value;
-    console.log(product)
     this.productService.createJSONProduct(product).subscribe(
       () => {
         this.loadProducts();

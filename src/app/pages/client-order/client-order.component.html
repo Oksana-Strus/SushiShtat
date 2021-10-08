@@ -1,1 +1,36 @@
-<p>client-order works!</p>
+<div class="container-fluid px-5">
+  <div class="px-4">
+    <h1>ВАШЕ ЗАМОВЛЕННЯ</h1>
+    <h3>Товари,які Ви замовили:</h3>
+    <div class="col">
+      <div class=" col-4 mini-order-card px-4 mx-2 py-2 my-2" *ngFor="let item of order.items">
+        <div class="header-mini-card d-flex justify-content-between align-items-center py-2">
+          <div class="title">{{item.title}}</div>
+        </div>
+        <div class="row body-mini-card">
+          <div class="col-3 counter">{{item.quantity}}<span class="color-light-grey">x</span></div>
+          <div class="col"><img style=" height: 40px;" [src]="item.image" alt=""></div>
+          <div class="col-2">
+            <div class="row d-flex justify-content-end">{{item.weight}}</div>
+            <div class="row d-flex justify-content-end">{{item.price}} грн</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="orders">
+        Загальна вартість замовлення: {{order.totalPrice}} грн
+      </div>
+      <h3>Інформація про користувача: </h3>
+      <div>Ім'я: {{info.name}}</div>
+      <div>Номер телефону: {{info.tel}}</div>
+      <div>Адреса: {{info.address}}, Будинок: {{info.house}}/{{info.appartaments}}/{{info.entrance}}</div>
+      <div>Коментар: {{info.comment}}</div>
+      <div>Телефонувати для підтвердження: {{info.callForConfirm?'так':'ні'}}</div>
+      <div>Дзвонити у двері: {{info.callInDoor?'так':'ні'}}</div>
+      <div>Тип оплати: {{info.paymentType}}</div>
+      <div *ngFor="let option of order.options">{{option.title}}: {{option.quantity}}</div>
+      <!-- <div>Палички: {{info.options.quantity}}</div> -->
+
+    </div>
+  </div>

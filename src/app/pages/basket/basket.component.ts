@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Basket, IBasket, IOrder, Order, OrderOption } from 'src/app/shared/models/order/order.model';
+import { Router } from '@angular/router';
+import { Basket, IBasket, IOrder, Order, OrderOption, PaymentType } from 'src/app/shared/models/order/order.model';
 import { OrdersService } from 'src/app/shared/services/orders/orders.service';
 
 @Component({
@@ -9,12 +10,14 @@ import { OrdersService } from 'src/app/shared/services/orders/orders.service';
   styleUrls: ['./basket.component.scss']
 })
 export class BasketComponent implements OnInit {
+  public callInDoor: boolean | undefined;
+  public callForConfirm: boolean | undefined;
   public order: IOrder = new Order();
   public orderForm!: FormGroup;
-
   constructor(
     private fb: FormBuilder,
-    private orderService: OrdersService
+    private router: Router,
+    private orderService: OrdersService,
   ) {
     this.initBasket();
   }
@@ -26,12 +29,20 @@ export class BasketComponent implements OnInit {
 
   initBasket(): void {
     this.orderService.basket$.subscribe(data => {
+      console.log('basket - updated')
       this.order.updateBasketItems(data)
     })
   }
-
-  showClientsOrder(): void {
-    console.log(this.orderForm)
+  // !!!!!!!!!!!!!
+  createClientsOrder(): void {
+    this.order.updateDeliveryInfo(this.orderForm.value)
+    this.orderService.create(this.order).subscribe(
+      (val: any) => {
+        this.router.navigateByUrl(`clientsOrder/${val.id}`)
+      }, err => {
+        console.log(err);
+      }
+    )
   }
 
   initOrderForm(): void {
@@ -41,8 +52,12 @@ export class BasketComponent implements OnInit {
       address: [null, Validators.required],
       house: [null, Validators.required],
       appartaments: [null, Validators.required],
-      entrance: [null, Validators.required]
-      // tel: [null, Validators.required],
+      entrance: [null, Validators.required],
+      comment: [null,],
+      callForConfirm: [null,],
+      callInDoor: [null,],
+      paymentType: ['Cash', Validators.required],
+      option: [Validators.required]
     })
   }
 

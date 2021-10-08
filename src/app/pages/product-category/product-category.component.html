@@ -10,7 +10,7 @@
           <h3 class="card-title">{{product.title}}</h3>
           <p class="card-text">{{product.description}}</p>
           <div class="row align-items-center justify-content-between">
-            <button class="btn btn-add-to-cart">В КОРЗИНУ</button>
+            <button class="btn btn-add-to-cart" (click)="addToBasket(product)">В КОРЗИНУ</button>
             <span class="price d-block">{{product.price}} грн</span>
           </div>
         </div>

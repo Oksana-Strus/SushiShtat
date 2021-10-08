@@ -10,7 +10,7 @@ import { ProductService } from '../product/product.service';
 })
 export class OrdersService {
 
-  checkOpenBasket$ = new Subject<boolean>();
+  checkOpenBasket$ = new BehaviorSubject<boolean>(false);
   private basket = new Basket();
   basket$ = new BehaviorSubject<IBasket>(this.basket);
 
@@ -26,12 +26,12 @@ export class OrdersService {
     this.basket$.next(this.basket)
   }
 
-  get(): Observable<any> {
-    return this.http.get<any>(this.api.orders);
+  get(id: number): Observable<IOrder> {
+    return this.http.get<IOrder>(`${this.api.orders}/${id}`)
   }
 
-  create(order: any): Observable<any> {
-    return this.http.post<any>(this.api.orders, order);
+  create(order: any): Observable<IOrder[]> {
+    return this.http.post<IOrder[]>(this.api.orders, order);
   }
 
   addToBasket(productId: number, quantity: number) {
@@ -48,13 +48,11 @@ export class OrdersService {
 
   removeBasketItem(productId: number, quantity: number) {
     this.basket.removeBasketItem(productId, quantity)
-
     this.basket$.next(this.basket)
   }
 
   removeAllItems(productId: number) {
     this.basket.removeAllItems(productId)
-
     this.basket$.next(this.basket)
   }
 

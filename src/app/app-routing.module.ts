@@ -23,8 +23,8 @@ const routes: Routes = [
   { path: 'discounts', component: DiscountsComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'basket', component: BasketComponent },
-  { path: 'clientsOrder', component: ClientOrderComponent },
-  
+  { path: 'clientsOrder/:id', component: ClientOrderComponent },
+
   // { path: 'rolls', component: RollsComponent },
   // { path: 'sets', component: SetsComponent },
   // { path: 'sushi', component: SushiComponent },

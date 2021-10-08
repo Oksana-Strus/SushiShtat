@@ -4,7 +4,7 @@
     <img class="product-icon" [src]="sanitizer.bypassSecurityTrustResourceUrl(category.icon)" alt="">
   </a>
 </nav>
-<div class="right-box py-4 px-4" [class]="isOpen ? 'open' : ''">
+<div class="right-box py-4 px-4" [class]="isOpen ? 'open d-block' : 'd-none'">
   <div class="cart-header row">
     <h5 class="cart-name col">Корзина</h5>
     <h5 class="cart-counter col text-end">{{basket.totalPrice}} грн</h5>
@@ -34,8 +34,8 @@
       </div>
     </div>
   </div>
-  <button  type="button" [disabled]="basket.totalItems===0"
-    class="btn w-100 create-order-btn" [routerLink]="['/basket']" (click)="openBasket()">ОФОРМИТИ
+  <button type="button" [disabled]="basket.totalItems===0" class="btn w-100 create-order-btn"
+    (click)="openBasket()">ОФОРМИТИ
     ЗАМОВЛЕННЯ</button>
 
 </div>

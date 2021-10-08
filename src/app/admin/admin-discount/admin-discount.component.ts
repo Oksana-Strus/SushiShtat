@@ -52,7 +52,6 @@ export class AdminDiscountComponent implements OnInit {
 
   createDiscount(): void {
     const discount = this.discountForm.value;
-    console.log(discount)
     this.discountService.createJSONSDiscount(discount).subscribe(
       () => {
         this.loadDiscounts();

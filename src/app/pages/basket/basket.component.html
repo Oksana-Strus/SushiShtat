@@ -1,10 +1,10 @@
-<div class="container-fluid px-lg-5 px-2 py-lg-5 py-2">
-  <div class="px-lg-5 px-2">
+<div class="container-fluid px-xl-5 px-2 py-xl-5 py-2">
+  <div class="px-xl-5 px-3">
     <h1 class="py-lg-2 ">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h1>
 
-    <form [formGroup]="orderForm" (ngSubmit)="showClientsOrder()">
+    <form [formGroup]="orderForm" (ngSubmit)="createClientsOrder()">
       <div class="row gx-5">
-        <div class="col-4">
+        <div class="col-xl-4 col-lg-6 col-12">
           <div class="column-container py-lg-4 py-2 px-lg-4 px-2">
             <div class="row d-flex justify-content-between">
               <h5 class="col-9">ВАШЕ ЗАМОВЛЕННЯ</h5>
@@ -46,8 +46,7 @@
             </div>
           </div>
         </div>
-
-        <div class="col-4">
+        <div class="col-xl-4 col-lg-6 col-12">
           <div class="column-container py-lg-4 py-2 px-lg-4 px-2">
             <div class="d-flex justify-content-between mb-3">
               <div class="row g-3">
@@ -61,7 +60,7 @@
                   <input type="text" class="form-control" formControlName="address" placeholder="Вулиця*">
                 </div>
                 <div class="col-md-4">
-                  <input type="number" class="form-control" formControlName="house" placeholder="Будинок*">
+                  <input type="text" class="form-control" formControlName="house" placeholder="Будинок*">
                 </div>
                 <div class="col-md-4">
                   <input type="text" class="form-control" formControlName="appartaments" placeholder="Квартира*">
@@ -71,14 +70,16 @@
                 </div>
                 <div class="col-12">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="call-for-submit">
-                    <label class="form-check-label" for="inlineCheckbox1">Не телефонувати для підтвердження</label>
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                      formControlName="callForConfirm" [(ngModel)]="callForConfirm">
+                    <label class="form-check-label" for="inlineCheckbox1">Телефонувати для підтвердження</label>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="call-in-door">
-                    <label class="form-check-label" for="inlineCheckbox1">Не дзвонити у двері</label>
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="callInDoor"
+                      formControlName="callInDoor" id="inlineCheckbox2">
+                    <label class="form-check-label" for="inlineCheckbox2">Дзвонити у двері</label>
                   </div>
                 </div>
                 <div class="col-12">
@@ -88,24 +89,34 @@
             </div>
           </div>
         </div>
-        <div class="col-4 d-grid gap-3">
+        <div class="col-xl-4 col-12 d-grid gap-3">
           <div class="col column-container py-lg-4 py-2 px-lg-4 px-2">
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="pay-cash" id="pay-cash" value="pay-cash"
-                checked>
+              <input class="form-check-input" type="radio" id="pay-cash" value="Cash" formControlName="paymentType">
               <label class="form-check-label" for="pay-cash">
-                Оплата готівкою кур'єру
+                Готівкою кур'єру
               </label>
             </div>
-            <div>Підготувати решту з <input type="number" class="check" placeholder="____"> грн</div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="pay-card" value="Card" formControlName="paymentType">
+              <label class="form-check-label" for="pay-card">
+                Карткою кур'єру
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="pay-online" value="Online" formControlName="paymentType">
+              <label class="form-check-label" for="pay-card">
+                Карткою онлайн
+              </label>
+            </div>
           </div>
           <div class="col column-container py-lg-4 py-2 px-lg-4 px-2">
             <div class="d-flex justify-content-between" *ngFor="let orderOption of order.options">
               <div class="text-question">{{orderOption.title}}</div>
               <div class="number-input">
-                <button class="minus button-action" (click)="remove(orderOption.option)"></button>
+                <button class="minus button-action" (click)="remove(orderOption.option)" type="button"></button>
                 <input class="quantity" min="0" value="{{orderOption.quantity}}">
-                <button class="plus  button-action" (click)="add(orderOption.option)"></button>
+                <button class="plus  button-action" (click)="add(orderOption.option)" type="button"></button>
               </div>
             </div>
           </div>
@@ -127,9 +138,8 @@
               <div class="price">{{order.totalPrice}} грн
               </div>
             </div>
-            <div class="text-center py-lg-4 py-1">Введіть свою адресу щоб дізнатися час доставки</div>
-            <button [disabled]="orderForm.invalid" type="submit"
-              class="btn btn-secondary w-100 btn-arrangment-order" [routerLink]="['/clientsOrder']">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</button>
+            <button [disabled]="orderForm.invalid || order.items.length == 0" type="submit"
+              class="btn btn-secondary w-100 btn-arrangment-order my-3">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</button>
           </div>
         </div>
       </div>

@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   public userCategories: Array<ICategory> = [];
   public userDiscounts: Array<IDiscount> = [];
   public userProducts: Array<IProduct> = [];
-  public summaryCount:number = 0;
+  public summaryCount: number = 0;
 
   constructor(
     private categoryService: CategoryService,
@@ -67,13 +67,11 @@ export class HomeComponent implements OnInit {
   }
 
   getProductsForCategory(categoryId?: number): Array<IProduct> {
-    return this.userProducts.filter(p => p.categoryId == categoryId)
+    return this.userProducts.filter(p => p.categoryId == categoryId).slice(0, 4)
   }
 
   addToBasket(product: IProduct): void {
     this.ordersService.addToBasket(product.id!, 1);
-    console.log(product.price)
     this.summaryCount += product.price
-    console.log(this.summaryCount)
   }
 }

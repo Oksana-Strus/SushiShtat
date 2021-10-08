@@ -57,7 +57,6 @@ export class AdminCategoryComponent implements OnInit {
 
   createCategory(): void {
     const category = this.categoryForm.value;
-    console.log(category)
     this.categoryService.createJSONCategory(category).subscribe(
       () => {
         this.loadCategories();

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ICategory } from 'src/app/shared/models/category/category.model';
 import { IProduct } from 'src/app/shared/models/product/product.model';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
+import { OrdersService } from 'src/app/shared/services/orders/orders.service';
 import { ProductService } from 'src/app/shared/services/product/product.service';
 
 @Component({
@@ -13,8 +14,13 @@ import { ProductService } from 'src/app/shared/services/product/product.service'
 export class ProductCategoryComponent implements OnInit {
   category?: ICategory;
   products: IProduct[] = []
+  public summaryCount: number = 0;
 
-  constructor(private activateRoute: ActivatedRoute, private categoryService: CategoryService, private productService: ProductService) {
+  constructor(private activateRoute: ActivatedRoute,
+    private categoryService: CategoryService,
+    private productService: ProductService,
+    private ordersService: OrdersService
+  ) {
   }
 
   ngOnInit(): void {
@@ -44,5 +50,9 @@ export class ProductCategoryComponent implements OnInit {
         console.log(err)
       }
     )
+  }
+  addToBasket(product: IProduct): void {
+    this.ordersService.addToBasket(product.id!, 1);
+    this.summaryCount += product.price
   }
 }
