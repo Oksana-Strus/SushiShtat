@@ -10,32 +10,18 @@ import { OrdersService } from 'src/app/shared/services/orders/orders.service';
 })
 export class ClientOrderComponent implements OnInit {
   public order: IOrder = new Order();
-  public info: any;
-  public options: any;
   constructor(
     private orderService: OrdersService,
     private route: ActivatedRoute,
   ) {
-    this.initBasket();
   }
 
   ngOnInit(): void {
-    this.initBasket();
     this.route.params.subscribe(params => {
       var orderId = params['id'];
       this.orderService.get(orderId).subscribe(data => {
-        console.log(data);
-        this.info = data.deliveryInfo;
-        this.options = data.options;
-        console.log('OOOOO', this.options[1])
+        this.order = data
       })
     });
   }
-
-  initBasket(): void {
-    this.orderService.basket$.subscribe(data => {
-      this.order.updateBasketItems(data)
-    })
-  }
-
 }

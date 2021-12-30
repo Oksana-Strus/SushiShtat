@@ -10,6 +10,8 @@ export interface IOrder {
     totalPrice: number;
     items: Array<IBasketItem>;
     paymentType: PaymentType;
+    callInDoor: boolean;
+    callConfirm: boolean;
     options: Array<IOrderOption>;
     deliveryInfo?: IDeliveryInfo
 
@@ -59,6 +61,8 @@ export enum OrderOption {
 export class Order implements IOrder {
     totalPrice: number = 0;
     paymentType: PaymentType = PaymentType.Cash;
+    callInDoor: boolean = true;
+    callConfirm: boolean = true;
     items: IBasketItem[] = [];
     deliveryInfo?: IDeliveryInfo;
     options: Array<IOrderOption> = [
@@ -158,6 +162,11 @@ export class Basket implements IBasket {
             this.items.splice(index, 1)
         }
 
+        this.recalculateItemFields();
+    }
+
+    clear(): void {
+        this.items = [];
         this.recalculateItemFields();
     }
 

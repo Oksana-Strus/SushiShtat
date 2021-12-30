@@ -38,6 +38,7 @@ export class BasketComponent implements OnInit {
     this.order.updateDeliveryInfo(this.orderForm.value)
     this.orderService.create(this.order).subscribe(
       (val: any) => {
+        this.orderService.clearBasket();
         this.router.navigateByUrl(`clientsOrder/${val.id}`)
       }, err => {
         console.log(err);

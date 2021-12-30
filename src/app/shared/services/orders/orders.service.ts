@@ -30,8 +30,8 @@ export class OrdersService {
     return this.http.get<IOrder>(`${this.api.orders}/${id}`)
   }
 
-  create(order: any): Observable<IOrder[]> {
-    return this.http.post<IOrder[]>(this.api.orders, order);
+  create(order: IOrder) {
+    return this.http.post<IOrder>(this.api.orders, order);
   }
 
   addToBasket(productId: number, quantity: number) {
@@ -56,5 +56,9 @@ export class OrdersService {
     this.basket$.next(this.basket)
   }
 
+  clearBasket() {
+    this.basket.clear()
+    this.basket$.next(this.basket)
+  }
 }
 
